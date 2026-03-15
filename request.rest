@@ -1,0 +1,298 @@
+### test
+GET http://localhost:5000/test
+
+###CREATE ADMIN
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "name":"admin",
+    "email":"admin@gmail.com",
+    "password":"123456",
+    "confPassword":"123456",
+    "role":"admin"
+
+}
+
+###LOGIN ADMIN
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email":"admin@gmail.com",
+    "password":"123456"
+  
+}
+
+###GET users
+GET http://localhost:5000/users
+
+###DELETE USER
+DELETE http://localhost:5000/users/0a80a647-f53c-4c04-9e4c-66e0910015e5
+
+
+############START OF CUSTOMER##################
+
+###Create Customers
+POST http://localhost:5000/customers
+Content-Type: application/json
+
+{
+    "name":"Customer 4",
+    "email":"customer2@gmail.com",
+    "phone":"1234567890",
+    "company":"big-tech"
+}
+
+###GET Customers
+GET http://localhost:5000/customers
+
+###GET Customer 1
+GET http://localhost:5000/customers/3
+
+###Update Customers
+PATCH  http://localhost:5000/customers/1
+Content-Type: application/json
+
+{
+    "name":"Customer 1 test1"
+}
+
+###Delete Customer
+DELETE http://localhost:5000/customers/1
+
+############END OF CUSTOMER####################
+
+############START OF PROJECTS##################
+
+###CREATE PROJECTS
+POST http://localhost:5000/projects
+Content-Type: application/json
+
+{
+    "name":"project 4",
+    "description":"1st project",
+    "due_date":"2025-03-01",
+    "status":"in talks",
+    "signed_date":"2025-01-01",
+    "customer_id":"4"
+}
+
+###UPDATE PROJECTS
+PATCH http://localhost:5000/projects/3
+Content-Type: application/json
+
+{
+    "name":"project 1",
+    "description":"1st project",
+    "due_date":"2025-03-01",
+    "status":"in talks",
+    "signed_date":"2025-01-01",
+    "customer_id":"5"
+}
+
+###GET PROJECTS
+GET http://localhost:5000/projects
+
+###GET SPECIFIC PROJECT
+GET http://localhost:5000/projects/1
+
+###DELETE PROJECT
+DELETE http://localhost:5000/projects/5
+
+############END OF PROJECTS####################
+
+############START OF TASKS##################
+
+###CREATE TASK
+POST http://localhost:5000/tasks
+Content-Type: application/json
+
+{
+    "name":"task 1",
+    "description":"1st task",
+    "status":"to do",
+    "due_date":"2025-03-01",
+    "project_id":"6"
+}
+
+###GET TASKS
+GET http://localhost:5000/tasks
+
+###GET TASK BY ID
+GET http://localhost:5000/tasks/1
+
+###UPDATE TASK BY ID
+PATCH http://localhost:5000/tasks/1
+Content-Type: application/json
+
+{
+    "name":"task 1",
+    "description":"1st task test1",
+    "status":"to do",
+    "due_date":"2025-03-01",
+    "project_id":"3"
+
+}
+
+###DELETE TASK BY ID 
+DELETE http://localhost:5000/tasks/3
+
+############END OF TASKS####################
+
+############START OF TEAMS##################
+
+###CREATE TEAM
+POST http://localhost:5000/teams
+Content-Type: application/json
+
+{
+    "name": "Development Team",
+    "manager_id": "a1b49cb0-483a-416f-826e-194aaf1c652d",
+    "user_ids": ["ffe5db37-493d-4a89-aae5-c0ebcd059b37","a1b49cb0-483a-416f-826e-194aaf1c652d"]
+}
+
+###GET ALL TEAMS
+GET http://localhost:5000/teams
+
+###GET SPECIFIC TEAM
+GET http://localhost:5000/teams/1
+
+###UPDATE TEAM
+PATCH  http://localhost:5000/teams/7
+Content-Type: application/json
+
+{
+    "name": "Development Team",
+    "manager_id": "a1b49cb0-483a-416f-826e-194aaf1c652d",
+    "user_ids": ["ffe5db37-493d-4a89-aae5-c0ebcd059b37","a1b49cb0-483a-416f-826e-194aaf1c652d"]
+}
+
+###DELETE TEAM
+DELETE http://localhost:5000/teams/7
+
+############END OF TEAMS####################
+
+############START OF PROJECT_TEAMS##################
+
+###CREATE PROJECT_TEAMS
+POST http://localhost:5000/projects/assign-team
+Content-Type: application/json
+
+{
+    "projectId":"5",
+    "teamId":"7"
+}
+
+###GET PROJECTS_TEAMS BY PROJECT ID
+GET http://localhost:5000/projects/5/teams
+
+###GET PROJECT_TEAMS BY TEAM ID
+GET http://localhost:5000/teams/7/projects
+
+###DELETE PROJECT_TEAMS BY PROJECT ID && TEAM ID
+DELETE http://localhost:5000/projects/4/teams/4
+
+############END OF PROJECT_TEAMS####################
+
+############START OF TIMESHEET##################
+
+###CREATE TIMESHEET
+POST http://localhost:5000/timesheets
+Content-Type: application/json
+
+{
+    "date":"2025-01-01",
+    "hours":"6.5",
+    "user_id":"11",
+    "project_id":"5",
+    "task_id":"1"
+}
+
+###GET ALL TIMESHEETS
+GET http://localhost:5000/timesheets
+
+###GET TIMESHEETS BY USERID
+GET http://localhost:5000/timesheets/user/a1b49cb0-483a-416f-826e-194aaf1c652d
+
+###GET TIMESHEETS BY TASKID
+GET http://localhost:5000/timesheets/task/3
+
+###GET TIMESHEET BY PROJECTID
+GET http://localhost:5000/timesheets/project/5
+
+
+###UPDATE TIMESHEET BY ID
+PATCH http://localhost:5000/timesheets/8
+Content-Type: application/json
+
+{
+    "date":"2025-02-02",
+    "hours":"6.0"
+}
+
+###DELETE TIMESHEET
+DELETE http://localhost:5000/timesheets/7
+
+############END OF TIMESHEET####################
+
+
+###get 
+GET http://localhost:5000/projects-with-tasks
+
+###get teamembers by manager id
+GET  http://localhost:5000/TeamsMembers/8255c61d-1ee0-49a3-9398-3493effaaa1e
+
+###get teamembers by manager id
+GET  http://localhost:5000/TeamsMembers/12
+
+############START OF RULES######################
+
+###get rules or create them if none exist
+GET http://localhost:5000/rules
+
+###UPDATE RULES
+PATCH http://localhost:5000/rules
+Content-Type: application/json
+
+{
+    "time_limit_type": "week",
+    "time_limit_value": 1,
+    "always_allow_current_week": true,
+    "manager_can_override": false
+}
+
+
+############END OF RULES########################
+###LOGIN ADMIN
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email":"admin@gmail.com",
+    "password":"123456"
+  
+}
+
+###POST ASSISTANT
+POST http://localhost:5000/assistant
+Content-Type: application/json
+
+{
+  "messages": [
+    { "role": "user", "content": "say hello" },
+    { "role": "assistant", "content": "hello" },
+    { "role": "user", "content": "Test message from frontend did i sent any other messages?" }
+  ]
+}
+
+###POST MAGIC BUTTON
+POST http://localhost:5000/magic-button
+Content-Type: application/json
+
+{
+    "project_id":5,
+    "task_id":5,
+    "hours":5,
+    "date":"2026-02-15"
+}
