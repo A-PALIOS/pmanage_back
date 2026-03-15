@@ -136,9 +136,13 @@ app.use(assistantRouter);
 //     console.log("Listening on port %s...", server.address().port);
 // });   
 
-var server = app.listen(process.env.APP_PORT, function () {
+// var server = app.listen(process.env.APP_PORT, function () {
+//     console.log("Listening on port %s...", server.address().port);
+// });   
+
+var server = app.listen(process.env.PORT || process.env.APP_PORT, function () {
     console.log("Listening on port %s...", server.address().port);
-});   
+});
 
 // app.listen(process.env.APP_PORT,()=>{
 //     console.log("Listening on port %s...", server.address().port);
