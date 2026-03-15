@@ -32,6 +32,8 @@ dotenv.config()
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -92,10 +94,11 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
     store:store,
+    proxy:true,
     cookie:{
-        secure:false,
+        secure:true,
         httpOnly:true,
-        sameSite:"lax",
+        sameSite:"none",
         maxAge: 24 * 60 * 60 * 1000,
     }
 }))
